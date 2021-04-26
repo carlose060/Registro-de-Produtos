@@ -44,10 +44,29 @@ void inserir(Lista *lista, item x){
 	while(i){
 		if(strcmp(i->C.nome,x.nome)==0){
 			i->C.quantidade = i->C.quantidade + x.quantidade;
+      modificar_arquivo(x);
 			return;
 		}
 		i = i->proximo;
 	} //checar se ja existe o item para nao repetir
+	struct prox* caixa = (struct prox*) malloc(sizeof(struct prox));
+	strcpy (caixa->C.nome,x.nome);
+	caixa->C.preco = x.preco;
+	caixa->C.precoCusto = x.precoCusto;
+	caixa->C.quantidade = x.quantidade;
+	caixa->proximo = NULL;
+
+	if(lista->inicio==NULL){
+		lista->inicio = caixa;
+		lista->final = caixa;
+	}
+	else{
+	lista->final->proximo = caixa;
+	lista->final = caixa;
+	}
+  novo_arquivo(x);
+}
+void inserir_C(Lista *lista, item x){
 	struct prox* caixa = (struct prox*) malloc(sizeof(struct prox));
 	strcpy (caixa->C.nome,x.nome);
 	caixa->C.preco = x.preco;
@@ -72,13 +91,18 @@ void remover(Lista *lista, char name[], int retirar){
 	int a = 1;
 	while(i && a){
 		if(strcmp(i->C.nome,name) == 0){ //função de comparar string
-			if(i->C.quantidade - retirar > 0)
+			if(i->C.quantidade - retirar > 0){
 				i->C.quantidade = i->C.quantidade - retirar;
+        modificar_arquivo(i->C);
+      }
 			else if(j==NULL){
+        remove(i->C.nome".txt");
 				lista->inicio = i->proximo;
 				free((void*)i);
+
 			}
 			else{
+        remove(i->C.nome".txt");
 				j->proximo = i->proximo;
 				free((void*)i);
 			}
