@@ -14,17 +14,19 @@ typedef struct prox{
 	struct prox *proximo;
 }Node;
 
-typedef struct Lista_en{
+typedef struct Lista{
 	struct prox *inicio;
 	struct prox *final;
 }Lista;
+
+
 
 void criar(Lista *lista){
 	lista->inicio = NULL;
 	lista->final = NULL;
 }
 
-int tamanho(Lista *lista){ //ex2
+int tamanho(Lista *lista){
 	struct prox *i;
 	int tam = 0;
 
@@ -34,11 +36,9 @@ int tamanho(Lista *lista){ //ex2
 		i = i->proximo;
 	}
 	return tam;
-}	//fim
+}
 
-
-
-void inserir(Lista *lista, item x){ //ex3
+void inserir(Lista *lista, item x){
 	struct prox *i;
 	i = lista->inicio;
 	while(i){
@@ -53,7 +53,6 @@ void inserir(Lista *lista, item x){ //ex3
 	caixa->C.preco = x.preco;
 	caixa->C.precoCusto = x.precoCusto;
 	caixa->C.quantidade = x.quantidade;
-
 	caixa->proximo = NULL;
 
 	if(lista->inicio==NULL){
@@ -64,9 +63,9 @@ void inserir(Lista *lista, item x){ //ex3
 	lista->final->proximo = caixa;
 	lista->final = caixa;
 	}
-}//fim
+}
 
-void remover(Lista *lista, char name[], int retirar){		//ex4
+void remover(Lista *lista, char name[], int retirar){
 	struct prox *i;
 	struct prox *j = NULL;
 	i = lista->inicio;
@@ -90,10 +89,9 @@ void remover(Lista *lista, char name[], int retirar){		//ex4
 			i = i->proximo;
 		}
 	}
-} //fim
+}
 
-void imprimir(Lista *lista){	//ex5
-	struct prox *i;
+void imprimir(Lista *lista){
 	i = lista->inicio;
 	while(i){
 		printf("Produto:");
@@ -102,7 +100,7 @@ void imprimir(Lista *lista){	//ex5
 		i = i->proximo;
 	}
 	printf("\n");
-} //fim
+}
 void alterarPreco(Lista *lista,char x[], float new_p){
 	struct prox* i;
 	i = lista->inicio;
