@@ -53,7 +53,7 @@ int main(){
         printf("Qual produto deseja alterar o preço: ");
         scanf("%s", x.nome);
         //fgets(x.nome,100,stdin);
-        printf("Digite o novo valor para o produto ");
+        printf("Digite o novo valor para o produto: ");
         scanf("%f",&new_p);
         printf("Qual preço deseja alterar? (0.Preço de venda/1.Preço de custo) = ");
         scanf("%d", &alt);
