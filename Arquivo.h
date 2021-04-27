@@ -1,8 +1,16 @@
-#include "Produto.h"
+//#include "Produto.h"
+
+void Carregar(Lista *lista);
+void novo_arquivo(item x);
+void modificar_arquivo(item x);
+
 
 void modificar_arquivo(item x){
   FILE *f;
-  f = fopen(x.nome".txt","w");
+  char aux[100];
+  strcpy(aux, x.nome);
+  strcat(aux,".txt");
+  f = fopen(aux,"w");
   if(f == NULL){
     printf("Erro ao abrir\n");
     return;
@@ -12,7 +20,10 @@ void modificar_arquivo(item x){
 }
 void novo_arquivo(item x){
   FILE *f;
-  f = fopen(x.nome".txt","w");
+  char aux[100];
+  strcpy(aux, x.nome);
+  strcat(aux,".txt");
+  f = fopen(aux,"w");
   if(f == NULL){
     printf("Erro ao abrir\n");
     return;
@@ -46,13 +57,14 @@ void Carregar(Lista *lista){
   for(int i=0;i < qt;i++){
     char nome[100];
     fscanf(f,"%s", nome);
-    FILE *file = fopen(nome".txt","r");
+    strcat(nome,".txt");
+    FILE *file = fopen(nome,"r");
     if(file == NULL){
       printf("Erro ao abrir\n");
       return;
     }
     struct Produto x;
-   fscanf(file,"%d",&x.quantidade);,
+   fscanf(file,"%d",&x.quantidade);
    fscanf(file,"%f",&x.preco);
    fscanf(file,"%f",&x.precoCusto);
    fscanf(file,"%s",x.nome);
