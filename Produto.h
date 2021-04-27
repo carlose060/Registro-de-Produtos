@@ -28,6 +28,7 @@ void remover(Lista *lista, char name[], int retirar);
 void imprimir(Lista *lista);
 void alterarPreco(Lista *lista,char x[], float new_p0);
 void alterarPrecoCusto(Lista *lista,char x[], float new_p);
+void removerArq(char nome[]);
 //escopo parte de arquivos
 void Carregar(Lista *lista);
 void novo_arquivo(item x);
@@ -99,6 +100,7 @@ void inserir_C(Lista *lista, item x){
 	}
 }
 
+
 void remover(Lista *lista, char name[], int retirar){
 	struct prox *i;
 	struct prox *j = NULL;
@@ -111,23 +113,25 @@ void remover(Lista *lista, char name[], int retirar){
         modificar_arquivo(i->C);
       }
 			else if(j==NULL){
+        removerArq(i->C.nome);
     /*    char aux[100];
         strcpy(aux, i->C.nome);
         strcat(aux,".txt");
         remove(aux);*/
-        i->C.quantidade = 0;
-        modificar_arquivo(i->C); //so para colocar 0 no arquivo
+      /*  i->C.quantidade = 0;
+        modificar_arquivo(i->C); *///so para colocar 0 no arquivo
 				lista->inicio = i->proximo;
 				free((void*)i);
 			}
 			else{
+        removerArq(i->C.nome);
         /*char aux[100];
         strcpy(aux, i->C.nome);
         strcat(aux,".txt");
         remove(aux);
         remove(aux);*/
-        i->C.quantidade = 0;
-        modificar_arquivo(i->C); // so para colocar 0 no arquivo
+      /*  i->C.quantidade = 0;
+        modificar_arquivo(i->C); // so para colocar 0 no arquivo*/
 				j->proximo = i->proximo;
 				free((void*)i);
 			}
@@ -139,19 +143,30 @@ void remover(Lista *lista, char name[], int retirar){
 		}
 	}
 }
-/*void removerArq(char nome[]){ //metodo aux
+void removerArq(char nome[]){ //metodo aux
       char aux[100];
       int tam;
       strcpy(aux,nome);
       strcat(aux,".txt");
       remove(aux);
-      FILE *f = fopen("produto.txt","r");
+      FILE *f = fopen("produto.txt","r+");
       fscanf(f,"%d", &tam);
-      for(int i=0;i< tam;i++){
-
+      for(int i=0;i<tam;i++){
+        int size = ftell(f);
+        fscanf(f,"%s",aux);
+        printf("%s",aux);
+        if(!strcmp(nome,aux)){
+          fseek(f,size,SEEK_SET);
+          for(int j=0;j<=strlen(nome);j++)
+          fprintf(f," ");
+          break;
+        }
       }
+      fseek(f,0,SEEK_SET);
+      fprintf(f,"%03d",tam-1);
       fclose(f);
-}*/
+}
+
 
 void imprimir(Lista *lista){
   struct prox *i;
