@@ -134,7 +134,6 @@ void removerArq(char nome[]){ //metodo aux
       char aux[100];
       int tam;
       strcpy(aux,nome);
-    //  strcat(aux,".txt");
       remove(aux);
       FILE *f = fopen("produto.txt","r+");
       fscanf(f,"%d", &tam);
@@ -178,7 +177,6 @@ void alterarPreco(Lista *lista,char x[], float new_p){
 			i->C.preco = new_p;
       char aux[100];
       strcpy(aux,i->C.nome);
-  //    strcat(aux,".txt");
       FILE *f = fopen(aux,"r+");
       if(f==NULL){
         printf("Erro ao abrir\n");
@@ -204,7 +202,6 @@ void alterarPrecoCusto(Lista *lista,char x[], float new_p){
 			i->C.precoCusto = new_p;
       char aux[100];
       strcpy(aux,i->C.nome);
-    //  strcat(aux,".txt");
       FILE *f = fopen(aux,"r+");
       if(f==NULL){
         printf("Erro ao abrir\n");
@@ -233,21 +230,18 @@ void modificar_arquivo(item x){
     return;
   }
   fwrite(&x,sizeof(item),1,f); //gravar em b no arquivo
-  //fprintf(f,"%03d\n%.5f\n%.5f\n%s",x.quantidade,x.preco,x.precoCusto,x.nome);
   fclose(f);
 }
 void novo_arquivo(item x){
   FILE *f;
   char aux[100];
   strcpy(aux, x.nome);
-//  strcat(aux,".txt");
   f = fopen(aux,"w");
   if(f == NULL){
     printf("Erro ao abrir\n");
     return;
   }
   fwrite(&x,sizeof(item),1,f);
-//  fprintf(f,"%03d\n%.5f\n%.5f\n%s",x.quantidade,x.preco,x.precoCusto,x.nome);
   fclose(f);
   f = fopen("produto.txt", "r+");
   if(f == NULL){
@@ -262,9 +256,6 @@ void novo_arquivo(item x){
   fseek(f,0,SEEK_END);  //pular para o fim do arquivo
   fprintf(f,"%s\n",x.nome);
   fclose(f);
-  /*f = fopen("produto.txt","a");
-  fprintf(f,"%s\n",x.nome);
-  fclose(f);*/
 }
 void Carregar(Lista *lista){
   FILE *f;
@@ -278,7 +269,6 @@ void Carregar(Lista *lista){
   for(int i=0;i < qt;i++){
     char nome[100];
     fscanf(f,"%s", nome);
-    //strcat(nome,".txt");
     FILE *file = fopen(nome,"r");
     if(file == NULL){
       printf("Erro ao abrir\n");
@@ -286,10 +276,6 @@ void Carregar(Lista *lista){
     }
     struct Produto x;
     fread(&x,sizeof(struct Produto),1,file);
-   /*fscanf(file,"%d",&x.quantidade);
-   fscanf(file,"%f",&x.preco);
-   fscanf(file,"%f",&x.precoCusto);
-   fscanf(file,"%s",x.nome);*/
    fclose(file);
    inserir_C(lista, x);
   }
