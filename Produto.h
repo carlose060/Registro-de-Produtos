@@ -29,7 +29,6 @@ void imprimir(Lista *lista);
 void alterarPreco(Lista *lista,char x[], float new_p0);
 void alterarPrecoCusto(Lista *lista,char x[], float new_p);
 void removerArq(char nome[]);
-//escopo parte de arquivos
 void Carregar(Lista *lista);
 void novo_arquivo(item x);
 void modificar_arquivo(item x);

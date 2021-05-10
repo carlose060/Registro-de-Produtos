@@ -1,4 +1,3 @@
-//#include "Arquivo.h"
 #include "Produto.h"
 #include <stdio.h>
 
@@ -40,7 +39,6 @@ int main(){
         imprimir(&lista);
         printf("Digite o nome do produto: ");
         scanf("%s", x.nome);
-        //fgets(x.nome,100,stdin);
         printf("Digite a quantidade que foi vendida: ");
         scanf("%d",&x.quantidade);
         remover(&lista,x.nome,x.quantidade);
@@ -52,7 +50,6 @@ int main(){
         float new_p;
         printf("Qual produto deseja alterar o preço: ");
         scanf("%s", x.nome);
-        //fgets(x.nome,100,stdin);
         printf("Digite o novo valor para o produto: ");
         scanf("%f",&new_p);
         printf("Qual preço deseja alterar? (0.Preço de venda/1.Preço de custo) = ");
