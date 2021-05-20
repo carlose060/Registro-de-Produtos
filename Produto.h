@@ -217,12 +217,10 @@ void alterarPrecoCusto(Lista *lista,char x[], float new_p){
 	}
   printf("\n\n\nO Produto não se encontra em estoque\n");
 }
-//funções de arquivo
 void modificar_arquivo(item x){
   FILE *f;
   char aux[100];
   strcpy(aux, x.nome);
-//  strcat(aux,".txt");
   f = fopen(aux,"w");
   if(f == NULL){
     printf("Erro ao abrir\n");
